@@ -1,0 +1,27 @@
+# Do not commit package-lock.json
+# THIS IS INTENTIONAL - I (the primary dev) use a local Verdaccio repository which is not accessible to others
+# as of NPM 7, this breaks when other people try to ```npm i``` with my package-lock.json
+# https://verdaccio.org/docs/cli-registry#npm-7x
+package-lock.json
+
+# IDE Files
+.vscode/*
+.idea
+
+# However, include these templated IDE files
+!.vscode/launch.json
+
+# Node files
+node_modules
+
+# Build files
+dist
+
+# Test files
+coverage
+
+# Sensitive data
+.env
+
+# Local Config files
+/config/local*

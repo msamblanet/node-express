@@ -1,0 +1,4 @@
+{
+    "notes": "This config file is not used by the npm bulid - it is included for use by your IDE and other dev-time tool chains",
+    "extends": "./node_modules/@msamblanet/node-project-settings/base/tsconfig-cjs.json"
+}

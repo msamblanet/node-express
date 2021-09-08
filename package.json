@@ -1,0 +1,88 @@
+{
+    "name": "@msamblanet/node-express",
+    "version": "0.1.0",
+    "private": false,
+    "description": "Baseline express implementation for Node.js server apps",
+    "homepage": "https://github.com/msamblanet/node-express",
+    "bugs": {
+        "url": "https://github.com/msamblanet/node-express/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/msamblanet/node-express.git"
+    },
+    "license": "Apache-2.0",
+    "author": "Michael Samblanet <michael@samblanet.com>",
+    "main": "dist/cjs/index.js",
+    "module": "dist/mjs/index.js",
+    "types": "dist/mjs/index.d.ts",
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "dev": "ts-node src/main.ts",
+        "debug": "node --inspect -r ts-node/register src/main.ts",
+        "nodemon": "nodemon src/main.ts",
+        "nodemon:debug": "nodemon --inspect src/main.ts",
+        "test": "jest",
+        "test:open": "opener \"./coverage/lcov-report/index.html\"",
+        "test:debug": "node --inspect node_modules/jest/bin/jest.js",
+        "test:watch": "jest --watch",
+        "test:watch:debug": "node --inspect node_modules/jest/bin/jest.js --watch",
+        "lint": "eslint --ext .ts src test",
+        "lint:fix": "eslint  --fix --ext .ts src test",
+        "build": "npm run build:clean && npm run build:gen",
+        "build:clean": "del-cli dist",
+        "build:check": "npm run build:check:mjs && npm run build:check:cjs && npm run test",
+        "build:check:mjs": "tsc --noEmit -p ./node_modules/@msamblanet/node-project-settings/base/tsconfig-mjs.json",
+        "build:check:cjs": "tsc --noEmit -p ./node_modules/@msamblanet/node-project-settings/base/tsconfig-cjs.json",
+        "build:gen": "npm run build:gen:mjs && npm run build:gen:cjs",
+        "build:gen:mjs": "tsc -p ./node_modules/@msamblanet/node-project-settings/base/tsconfig-mjs.json",
+        "build:gen:cjs": "tsc -p ./node_modules/@msamblanet/node-project-settings/base/tsconfig-cjs.json",
+        "prepack": "npm run lint && npm run build:check && npm run build",
+        "lib:check": "ncu",
+        "lib:update:patch": "ncu -u -t patch && npm install",
+        "lib:update:minor": "ncu -u -t minor && npm install",
+        "lib:update:latest": "ncu -u -t latest && npm install",
+        "lib:update:doctor": "ncu --doctor -u -t latest",
+        "applyProjectTemplate": "applyProjectTemplate"
+    },
+    "nodemonConfig": {
+        "execMap": {
+            "ts": "node -r ts-node/register"
+        },
+        "ext": "ts",
+        "watch": [
+            "src/"
+        ]
+    },
+    "devDependencies": {
+        "@msamblanet/node-project-settings": "^0.3.4",
+        "@types/express": "^4.17.13",
+        "@types/jest": "^27.0.1",
+        "@types/node": "^16.7.10",
+        "@typescript-eslint/eslint-plugin": "^4.30.0",
+        "del-cli": "^4.0.1",
+        "eslint": "^7.32.0",
+        "jest": "^27.1.0",
+        "nodemon": "^2.0.12",
+        "npm-check-updates": "^11.8.5",
+        "opener": "^1.5.2",
+        "source-map-support": "^0.5.19",
+        "ts-jest": "^27.0.5",
+        "ts-node": "^10.2.1",
+        "tslog": "^3.2.2",
+        "typescript": "^4.4.2"
+    },
+    "engines": {
+        "node": ">=16.7.0"
+    },
+    "dependencies": {
+        "@msamblanet/node-config-types": "^0.2.1",
+        "@msamblanet/node-request-tracker": "^0.1.5",
+        "express": "^4.17.1",
+        "http-terminator": "^3.0.0",
+        "ngrok": "^4.2.2",
+        "on-headers": "^1.0.2"
+    }
+}
