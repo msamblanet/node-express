@@ -78,7 +78,7 @@
         "node": ">=16.7.0"
     },
     "dependencies": {
-        "@msamblanet/node-config-types": "^0.2.1",
+        "@msamblanet/node-config-types": "^0.4.0",
         "@msamblanet/node-request-tracker": "^0.1.5",
         "express": "^4.17.1",
         "http-terminator": "^3.0.0",
